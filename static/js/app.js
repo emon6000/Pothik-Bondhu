@@ -1,430 +1,183 @@
-/* =================================== */
-/* Pothik Bondhu - Main Stylesheet   */
-/* =================================== */
+document.addEventListener("DOMContentLoaded", function() {
 
+    const datalistOptions = document.querySelectorAll('#districts-list option');
+    const ALL_DISTRICTS = Array.from(datalistOptions).map(opt => opt.value);
+    console.log("Loaded " + ALL_DISTRICTS.length + " districts from HTML datalist.");
 
-/* --- 1. Basic Setup (DARK MODE) --- */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    var map = L.map('map').setView([23.6850, 90.3563], 7);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+    }).addTo(map);
+    var routeLayer = null;
+
+    var startInput = document.getElementById('start');
+    var endInput = document.getElementById('end');
+    var submitButton = document.getElementById('submit-btn');
+    var resultsPanel = document.getElementById('results-panel');
     
-    /* Our dark background */
-    background: #1a1b26; /* A very dark, cool blue-grey */
-    
-    /* Default text color is now light */
-    color: #f1f1f1; 
-    
-    min-height: 100vh;
-}
+    const aboutLink = document.getElementById('about-link');
+    const contactLink = document.getElementById('contact-link');
+    const aboutModal = document.getElementById('about-modal');
+    const contactModal = document.getElementById('contact-modal');
+    const closeButtons = document.querySelectorAll('.modal-close-btn');
+    const modalOverlays = document.querySelectorAll('.modal-overlay');
 
-/* --- 2. Main Layout --- */
-.content-container {
-    max-width: 800px; /* Constrains the width on desktops */
-    margin: 2rem auto; /* Centers the content */
-    padding: 0 1rem; /* Padding for mobile */
-}
+    submitButton.addEventListener('click', function() {
+        var startValue = startInput.value;
+        var endValue = endInput.value;
 
-/* --- 3. Header --- */
-.header {
-    background-color: #2a2b3a; /* Dark panel color */
-    border-bottom: 1px solid #444; /* Subtle border */
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-.header-logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-}
-.header-logo .icon {
-    font-size: 2.2rem;
-    margin-right: 0.75rem;
-}
-.header-logo .title {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #f1f1f1;
-}
-.header-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-.header-nav li {
-    margin-left: 1.5rem;
-}
-.header-nav a {
-    text-decoration: none;
-    color: #aaa;
-    font-weight: 500;
-}
-.header-nav a:hover {
-    color: #00aaff; /* Brighter blue */
-}
+        const isValidStart = ALL_DISTRICTS.some(d => d.toLowerCase() === startValue.toLowerCase());
+        const isValidEnd = ALL_DISTRICTS.some(d => d.toLowerCase() === endValue.toLowerCase());
 
-/* --- 4. Hero Section --- */
-.hero-section {
-    background: #2a2b3a; /* Dark panel color */
-    border: 1px solid #444;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    padding: 2.5rem 2rem;
-    text-align: center;
-    margin-bottom: 2rem;
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-}
-.hero-section h1 {
-    margin: 0 0 0.5rem 0;
-    font-size: 2.2rem;
-    font-weight: 700;
-    /* New bright gradient for dark background */
-    background: linear-gradient(45deg, #00aaff, #00ffcc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-}
-.hero-section p {
-    margin: 0;
-    font-size: 1.15rem;
-    color: #bbb;
-    line-height: 1.6;
-}
+        if (!isValidStart || !isValidEnd) {
+            alert("Invalid location. Please select a valid district from the suggestion list for both Start and End.");
+            return; 
+        }
 
-/* --- 5. Input Panel --- */
-.input-panel {
-    background: #2a2b3a; /* Dark panel color */
-    border: 1px solid #444;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-}
-.input-panel .input-group {
-    margin-bottom: 1rem;
-    position: relative; /* For the datalist/autocomplete */
-}
-.input-panel label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: #f1f1f1; /* Light color for label */
-    font-size: 1rem; /* Make label a bit bigger */
-}
-.input-panel input[type="text"] {
-    /* Sizing */
-    width: 100%;
-    box-sizing: border-box;
-    /* Dark Mode Theme */
-    background-color: #1e1e2d; /* Darker than the panel */
-    border: 1px solid #444;
-    color: #f1f1f1; /* Light text for typing */
-    /* Font & Spacing */
-    padding: 0.8rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    /* Cool effects */
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-.input-panel input[type="text"]:focus {
-    outline: none; 
-    border-color: #00aaff; /* Brighter blue */
-    box-shadow: 0 0 8px rgba(0,170,255,0.4); /* Brighter glow */
-}
-.input-panel .submit-btn {
-    width: 100%;
-    padding: 0.9rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 1rem;
-    transition: all 0.2s ease-out;
-}
-.input-panel .submit-btn:hover {
-    background-color: #0056b3;
-    transform: translateY(-3px); 
-    box-shadow: 0 4px 12px rgba(0,123,255,0.4);
-}
+        console.log("Sending to Django:", startValue, "to", endValue);
+        resultsPanel.innerHTML = `
+            <div class="loader-container">
+                <div class="loader"></div>
+                <p class="loader-text">Loading your route...It may take some moments</p>
+            </div>
+        `;
+        
+        var apiUrl = '/api/plan-journey/'; 
+        var postData = {
+            start: startValue,
+            end: endValue
+        };
 
-/* --- 6. Map Panel --- */
-.map-section {
-    margin-top: 2rem;
-    background: #2a2b3a; /* Dark panel color */
-    border: 1px solid #444;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    padding: 0.5rem;
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-}
-#map {
-    width: 100%;
-    height: 400px;
-    background-color: #e9e9e9; /* Placeholder color */
-    border-radius: 5px;
-}
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken') 
+            },
+            body: JSON.stringify(postData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => { 
+                    throw new Error(err.error || 'Server error. Could not plan route.'); 
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Full journey data received:", data);
 
-/* --- 7. Journey Steps (Accordion) --- */
-.journey-steps {
-    margin-top: 2rem;
-}
-.journey-steps h3 {
-    font-size: 1.5rem;
-    color: #f1f1f1; 
-    border-bottom: 2px solid #444;
-    padding-bottom: 0.5rem;
-}
-#results-panel {
-    padding-top: 1rem;
-}
-.route-summary {
-    background: #1e1e2d; /* Darker blue/grey */
-    border: 1px solid #00aaff; /* Bright blue border */
-    padding: 1rem;
-    border-radius: 5px;
-}
-.step-accordion {
-    background: #2a2b3a; /* Dark panel color */
-    border: 1px solid #444;
-    border-radius: 5px;
-    margin-bottom: 0.5rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-}
-.step-summary {
-    padding: 1rem;
-    cursor: pointer;
-    font-size: 1.1rem;
-    list-style: '▶  ';
-}
-.step-summary span { /* This is for the temperature */
-    font-weight: normal;
-    color: #e6e6e6;  /* Make the text bright white/grey */
-    animation: glow 2.5s ease-in-out infinite; /* The cool glow effect */
-    font-size: 1rem;
-}
-.step-accordion[open] > .step-summary {
-    list-style: '▼  ';
-    border-bottom: 1px solid #444;
-    color: #00aaff; /* Bright blue on open */
-}
-.step-content {
-    padding: 0 1rem 1rem 2.5rem;
-}
-.step-content h4 {
-    border-bottom: 1px solid #444;
-    padding-bottom: 5px;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    color: #f1f1f1;
-}
-.step-content ul {
-    padding-left: 20px;
-    margin-top: 0;
-    list-style-type: '» ';
-}
-.step-content ul li {
-    padding-bottom: 5px;
-}
+            if (data.error) {
+                resultsPanel.innerHTML = `<p style="color: red;">${data.error}</p>`;
+                return;
+            }
 
-/* --- 8. Modals (About/Contact) --- */
-.modal-overlay {
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-.modal-overlay.visible {
-    opacity: 1;
-    visibility: visible;
-}
-.modal-content {
-    background-color: #2a2b3a;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    padding: 2rem;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-    transform: translateY(-50px);
-    transition: transform 0.3s ease;
-}
-.modal-overlay.visible .modal-content {
-    transform: translateY(0);
-}
-.modal-close-btn {
-    position: absolute;
-    top: 0.5rem;
-    right: 1rem;
-    color: #aaa;
-    font-size: 2rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-.modal-close-btn:hover {
-    color: #f1f1f1;
-}
-.modal-content h2 {
-    margin-top: 0;
-    border-bottom: 2px solid #00aaff; 
-    padding-bottom: 0.5rem;
-    color: #f1f1f1;
-}
-.contact-list {
-    list-style: none;
-    padding: 0;
-}
-.contact-list li {
-    padding: 0.5rem 0;
-    font-size: 1.1rem;
-}
-.contact-list li a {
-    text-decoration: none;
-    color: #00aaff;
-}
-.contact-list li a:hover {
-    text-decoration: underline;
-}
-.hidden {
-    display: none;
-}
+            if (routeLayer) { map.removeLayer(routeLayer); }
+            routeLayer = L.geoJSON(data.route_geometry, {
+                style: { color: '#00aaff', weight: 6, opacity: 0.8 }
+            }).addTo(map);
+            map.fitBounds(routeLayer.getBounds());
 
-/* --- 9. Footer --- */
-.footer {
-    text-align: center;
-    padding: 2rem;
-    margin-top: 3rem;
-    background-color: #2a2b3a; /* Dark panel color */
-    color: #aaa;
-    font-size: 0.9rem;
-}
+            var distanceKm = (data.route_distance / 1000).toFixed(1);
+            var durationHours = (data.route_duration / 3600).toFixed(1);
 
-/* --- 10. Animations & Effects --- */
+            let finalHtml = `
+                <div class="route-summary">
+                    <h3>Your Route Summary</h3>
+                    <p><strong>Total Distance:</strong> ${distanceKm} km</p>
+                    <p><strong>Estimated Time:</strong> ${durationHours} hours</p>
+                </div>
+            `;
+            
+            data.journey_steps.forEach(step => {
+                let weatherHtml = "<ul><li>Weather data only shown for start and end.</li></ul>";
+                if (step.weather) {
+                    weatherHtml = `
+                        <ul>
+                            <li><strong>Temp:</strong> ${step.weather.temp}°C</li>
+                            <li><strong>Feels Like:</strong> ${step.weather.feels_like}°C</li>
+                            <li><strong>Conditions:</strong> ${step.weather.description}</li>
+                        </ul>
+                    `;
+                }
+                
+                let sightsHtml = "No notable sights listed.";
+                if (step.top_sights && step.top_sights.trim() && step.top_sights !== "N/A") {
+                    sightsHtml = "<ul>";
+                    step.top_sights.split(',').forEach(sight => {
+                        sightsHtml += `<li>${sight.trim()}</li>`;
+                    });
+                    sightsHtml += "</ul>";
+                }
+                
+                let foodHtml = "No famous foods listed.";
+                if (step.famous_food && step.famous_food.trim() && step.famous_food !== "N/A") {
+                    foodHtml = "<ul>";
+                    step.famous_food.split(',').forEach(food => {
+                        foodHtml += `<li>${food.trim()}</li>`;
+                    });
+                    foodHtml += "</ul>";
+                }
+                
+                finalHtml += `
+                    <details class="step-accordion">
+                        <summary class="step-summary">
+                            On your way through: <strong>${step.district}</strong> 
+                            <span>(${(step.weather ? step.weather.temp + '°C' : '...')})</span>
+                        </summary>
+                        <div class="step-content">
+                            <h4>Weather</h4>
+                            ${weatherHtml}
+                            <h4>Top Sights</h4>
+                            ${sightsHtml}
+                            <h4>Famous Food & Items</h4>
+                            ${foodHtml}
+                        </div>
+                    </details>
+                `;
+            });
+            resultsPanel.innerHTML = finalHtml;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            resultsPanel.innerHTML = `<p style="color: red;">An error occurred: ${error.message}</p>`;
+        });
+    });
 
-/* Panel hover effect */
-.hero-section:hover,
-.input-panel:hover,
-.map-section:hover,
-.step-accordion:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,170,255,0.1); /* A subtle blue glow */
-}
+    function openModal(modal) {
+        modal.classList.remove('hidden');
+        setTimeout(() => modal.classList.add('visible'), 10);
+    }
+    function closeModal(modal) {
+        modal.classList.remove('visible');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+    }
+    aboutLink.addEventListener('click', function(e) { e.preventDefault(); openModal(aboutModal); });
+    contactLink.addEventListener('click', function(e) { e.preventDefault(); openModal(contactModal); });
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            closeModal(button.closest('.modal-overlay'));
+        });
+    });
+    modalOverlays.forEach(overlay => {
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) { closeModal(overlay); }
+        });
+    });
 
-/* Loader spinner */
-.loader-container {
-    display: flex;
-    flex-direction: column; /* Stacks text below spinner */
-    justify-content: center;
-    align-items: center;
-    padding: 3rem 0;
-}
-.loader {
-    border: 5px solid #444; /* The 'track' */
-    border-top: 5px solid #00aaff; /* The 'moving' part */
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-}
-.loader-text {
-    margin-top: 1rem;
-    font-size: 1.1rem;
-    color: #bbb;
-    font-weight: 500;
-    animation: glow 2.5s ease-in-out infinite;
-}
-
-/* Animation keyframes */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-@keyframes glow {
-  0% { text-shadow: 0 0 4px rgba(230, 230, 230, 0.4); }
-  50% { text-shadow: 0 0 12px rgba(230, 230, 230, 0.9); }
-  100% { text-shadow: 0 0 4px rgba(230, 230, 230, 0.4); }
-}
-
-
-/* =================================== */
-/* --- 11. RESPONSIVE DESIGN (Mobile) --- */
-/* =================================== */
-
-/* This must be at the very end of the file */
-@media (max-width: 768px) {
-
-    /* 1. Make content use the full width */
-    .content-container {
-        margin: 1rem auto; /* Less top/bottom margin */
-        padding: 0 0.5rem; /* Less side padding */
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
     }
 
-    /* 2. Fix the Header to stack vertically */
-    .header {
-        padding: 1rem;
-        flex-direction: column; /* Stack logo and links */
-        gap: 1rem; /* Add a little space between them */
-    }
-    .header-nav ul {
-        /* Make sure nav links are centered */
-        justify-content: center;
-        width: 100%;
-    }
-
-    /* 3. Fix Typography (MOST IMPORTANT) */
-    .hero-section h1 {
-        font-size: 1.8rem; /* Make hero title smaller */
-    }
-    .hero-section p {
-        font-size: 1rem; /* Make hero subtitle smaller */
-    }
-    .journey-steps h3 {
-        font-size: 1.3rem; /* Make "Your Journey Guide" smaller */
-    }
-    .step-summary {
-        font-size: 1rem; /* Make accordion titles smaller */
-        /* Fix list-style alignment */
-        list-style-position: inside;
-        text-indent: -1.4em;
-        padding-left: 1.4em;
-    }
-    .step-content {
-        /* Fix the indentation */
-        padding: 0 1rem 1rem 1.5rem;
-    }
-
-    /* 4. Make Panels less padded */
-    .hero-section,
-    .input-panel,
-    .modal-content {
-        padding: 1.5rem; /* Reduce padding on all panels */
-    }
-
-    /* 5. Make the map a bit shorter on phones */
-    #map {
-        height: 300px;
-    }
-
-    /* 6. Fix modal for small screens */
-    .modal-content {
-        width: 95%;
-        padding: 1.5rem 1rem;
-    }
-}
+});

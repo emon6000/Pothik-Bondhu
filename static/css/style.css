@@ -1,34 +1,24 @@
-/* =================================== */
-/* Pothik Bondhu - Main Stylesheet   */
-/* =================================== */
-
-
-/* --- 1. Basic Setup (DARK MODE) --- */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
     
-    /* Our new dark background */
-    background: #1a1b26; /* A very dark, cool blue-grey */
+    background: #1a1b26;
     
-    /* Default text color is now light */
     color: #f1f1f1; 
     
     min-height: 100vh;
 }
 
-/* --- 2. Main Layout --- */
 .content-container {
-    max-width: 800px; /* Constrains the width on desktops */
-    margin: 2rem auto; /* Centers the content */
-    padding: 0 1rem; /* Padding for mobile */
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
-/* --- 3. Header --- */
 .header {
-    background-color: #2a2b3a; /* Dark panel color */
-    border-bottom: 1px solid #444; /* Subtle border */
+    background-color: #2a2b3a;
+    border-bottom: 1px solid #444;
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
@@ -64,12 +54,11 @@ body {
     font-weight: 500;
 }
 .header-nav a:hover {
-    color: #00aaff; /* Brighter blue */
+    color: #00aaff;
 }
 
-/* --- 4. Hero Section --- */
 .hero-section {
-    background: #2a2b3a; /* Dark panel color */
+    background: #2a2b3a;
     border: 1px solid #444;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -82,7 +71,6 @@ body {
     margin: 0 0 0.5rem 0;
     font-size: 2.2rem;
     font-weight: 700;
-    /* New bright gradient for dark background */
     background: linear-gradient(45deg, #00aaff, #00ffcc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -95,10 +83,8 @@ body {
     color: #bbb;
     line-height: 1.6;
 }
-
-/* --- 5. Input Panel --- */
 .input-panel {
-    background: #2a2b3a; /* Dark panel color */
+    background: #2a2b3a;
     border: 1px solid #444;
     padding: 2rem;
     border-radius: 8px;
@@ -107,47 +93,34 @@ body {
 }
 .input-panel .input-group {
     margin-bottom: 1rem;
-    position: relative; /* For the datalist/autocomplete */
+    position: relative;
 }
 .input-panel label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: #f1f1f1; /* Light color for label */
-    font-size: 1rem; /* Make label a bit bigger */
+    color: #f1f1f1;
+    font-size: 1rem;
 }
-
-/* *
-* THIS IS THE CORRECTED STYLE FOR YOUR INPUT BOXES 
-*
-*/
 .input-panel input[type="text"] {
-    /* Sizing */
     width: 100%;
-    box-sizing: border-box; /* This makes 100% width work correctly */
+    box-sizing: border-box;
 
-    /* Dark Mode Theme */
-    background-color: #1e1e2d; /* Darker than the panel */
+    background-color: #1e1e2d;
     border: 1px solid #444;
-    color: #f1f1f1; /* Light text for typing */
+    color: #f1f1f1;
     
-    /* Font & Spacing */
     padding: 0.8rem;
     font-size: 1rem;
     border-radius: 5px;
     
-    /* Cool effects */
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .input-panel input[type="text"]:focus {
     outline: none; 
-    border-color: #00aaff; /* Brighter blue */
-    box-shadow: 0 0 8px rgba(0,170,255,0.4); /* Brighter glow */
+    border-color: #00aaff;
+    box-shadow: 0 0 8px rgba(0,170,255,0.4);
 }
-/* *
-* END OF THE FIX 
-*
-*/
 
 .input-panel .submit-btn {
     width: 100%;
@@ -167,10 +140,9 @@ body {
     transform: translateY(-3px); 
     box-shadow: 0 4px 12px rgba(0,123,255,0.4);
 }
-/* --- 6. Map Panel --- */
 .map-section {
     margin-top: 2rem;
-    background: #2a2b3a; /* Dark panel color */
+    background: #2a2b3a;
     border: 1px solid #444;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -180,11 +152,10 @@ body {
 #map {
     width: 100%;
     height: 400px;
-    background-color: #e9e9e9; /* Placeholder color */
+    background-color: #e9e9e9;
     border-radius: 5px;
 }
 
-/* --- 7. Journey Steps (Accordion) --- */
 .journey-steps {
     margin-top: 2rem;
 }
@@ -198,13 +169,13 @@ body {
     padding-top: 1rem;
 }
 .route-summary {
-    background: #1e1e2d; /* Darker blue/grey */
-    border: 1px solid #00aaff; /* Bright blue border */
+    background: #1e1e2d;
+    border: 1px solid #00aaff;
     padding: 1rem;
     border-radius: 5px;
 }
 .step-accordion {
-    background: #2a2b3a; /* Dark panel color */
+    background: #2a2b3a;
     border: 1px solid #444;
     border-radius: 5px;
     margin-bottom: 0.5rem;
@@ -217,16 +188,16 @@ body {
     font-size: 1.1rem;
     list-style: '▶  ';
 }
-.step-summary span { /* This is for the temperature */
+.step-summary span {
     font-weight: normal;
-    color: #e6e6e6;  /* Make the text bright white/grey */
-    animation: glow 2.5s ease-in-out infinite; /* The cool glow effect */
+    color: #e6e6e6;
+    animation: glow 2.5s ease-in-out infinite;
     font-size: 1rem;
 }
 .step-accordion[open] > .step-summary {
     list-style: '▼  ';
     border-bottom: 1px solid #444;
-    color: #00aaff; /* Bright blue on open */
+    color: #00aaff;
 }
 .step-content {
     padding: 0 1rem 1rem 2.5rem;
@@ -247,7 +218,6 @@ body {
     padding-bottom: 5px;
 }
 
-/* --- 8. Modals (About/Contact) --- */
 .modal-overlay {
     position: fixed;
     z-index: 1000;
@@ -318,28 +288,22 @@ body {
     display: none;
 }
 
-/* --- 9. Footer --- */
 .footer {
     text-align: center;
     padding: 2rem;
     margin-top: 3rem;
-    background-color: #2a2b3a; /* Dark panel color */
+    background-color: #2a2b3a;
     color: #aaa;
     font-size: 0.9rem;
 }
-
-/* --- 10. Animations & Effects --- */
-
-/* Panel hover effect */
 .hero-section:hover,
 .input-panel:hover,
 .map-section:hover,
 .step-accordion:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,170,255,0.1); /* A subtle blue glow */
+    box-shadow: 0 8px 20px rgba(0,170,255,0.1);
 }
 
-/* Loader spinner */
 .loader-container {
     display: flex;
     justify-content: center;
@@ -347,8 +311,8 @@ body {
     padding: 3rem 0;
 }
 .loader {
-    border: 5px solid #444; /* The 'track' */
-    border-top: 5px solid #00aaff; /* The 'moving' part */
+    border: 5px solid #444;
+    border-top: 5px solid #00aaff;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -359,7 +323,6 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Text glow effect */
 @keyframes glow {
   0% { text-shadow: 0 0 4px rgba(230, 230, 230, 0.4); }
   50% { text-shadow: 0 0 12px rgba(230, 230, 230, 0.9); }

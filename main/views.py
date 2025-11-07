@@ -1,5 +1,3 @@
-# main/views.py
-
 from django.shortcuts import render
 from django.http import JsonResponse 
 from django.conf import settings
@@ -7,7 +5,6 @@ from .models import District
 import json
 import requests
 
-# --- 1. 'home' view ---
 def home(request):
     """
     Renders the homepage and passes the 64-district list
@@ -21,8 +18,6 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-# --- 2. 'api_plan_journey' (The "Full Data" Version) ---
-
 def api_plan_journey(request):
     
     data = json.loads(request.body)
@@ -31,7 +26,6 @@ def api_plan_journey(request):
     
     print(f"API CALLED: Start is {start_location_name}, End is {end_location_name}")
 
-    # --- HELPER 1: Normalize Names ---
     def normalize_district_name(name):
         if not name: return None
         name = (
@@ -39,7 +33,6 @@ def api_plan_journey(request):
                 .replace(" Division", "").replace(" Metropolitan", "")
                 .replace(" Sadar Upazila", "").replace(" Adarsha Sadar Upazila", "")
         )
-        # Fix known spelling issues
         name_lower = name.lower()
         if name_lower == "comilla": return "Cumilla"
         if name_lower == "barisal": return "Barishal"
@@ -47,7 +40,6 @@ def api_plan_journey(request):
         if name_lower == "jessore": return "Jashore"
         return name
 
-    # --- HELPER 2: Get Coords (Name -> Coords) ---
     def get_coords_from_name(location_name):
         headers = { 'User-Agent': 'PothikBondhu/1.0 (pothik.bondhu.app; abdullahemon.me@gmail.com)' }
         url = "https://nominatim.openstreetmap.org/search"
@@ -71,7 +63,6 @@ def api_plan_journey(request):
             print(f"Error in get_coords_from_name: {e}")
             return None, None, None
 
-    # --- HELPER 3: Get District (Coords -> Name) ---
     def get_district_from_coords(lon, lat):
         headers = { 'User-Agent': 'PothikBondhu/1.0 (pothik.bondhu.app; abdullahemon.me@gmail.com)' }
         url = "https://nominatim.openstreetmap.org/reverse"
@@ -92,7 +83,6 @@ def api_plan_journey(request):
             print(f"Reverse geocode error: {e}")
             return None
 
-    # --- HELPER 4: Get Route (No change) ---
     def get_route(start_coords, end_coords):
         coords_string = f"{start_coords};{end_coords}"
         url = f"http://router.project-osrm.org/route/v1/driving/{coords_string}"
@@ -108,7 +98,6 @@ def api_plan_journey(request):
         except Exception as e:
             print(f"Error getting route from OSRM: {e}"); return None
 
-    # --- HELPER 5: Get Weather (No change) ---
     def get_weather(lat, lon):
         print(f"Getting weather for {lat}, {lon}")
         api_key = settings.WEATHER_API_KEY 
@@ -126,7 +115,6 @@ def api_plan_journey(request):
         except Exception as e:
             print(f"Weather API error: {e}"); return None
 
-    # --- MAIN LOGIC (Reverted to "slow but full" version) ---
     
     start_coords, start_lat, start_lon = get_coords_from_name(start_location_name)
     end_coords, end_lat, end_lon = get_coords_from_name(end_location_name)
@@ -139,7 +127,6 @@ def api_plan_journey(request):
     if not route_data:
         return JsonResponse({'error': 'A route could not be found between these locations.'}, status=400)
 
-    # --- Build district list (Normalized) ---
     all_districts = []
     
     start_district = get_district_from_coords(start_lon, start_lat)
@@ -164,13 +151,11 @@ def api_plan_journey(request):
         
     print(f"Final normalized district list: {all_districts}")
     
-    # --- Build "Journey Steps" (This is the reverted "slow" part) ---
     journey_steps = []
     
     for district_name in all_districts:
         step_data = {"district": district_name}
         
-        # 1. Get Route Wealth from DB (Fast)
         try:
             district_db = District.objects.get(name=district_name)
             step_data['top_sights'] = district_db.top_sights
@@ -181,8 +166,6 @@ def api_plan_journey(request):
             step_data['top_sights'] = "N/A"
             step_data['famous_food'] = "N/A"
         
-        # 2. Get Weather (The "slow" part we are adding back)
-        # We must get coords for EVERY district
         print(f"Getting coords for {district_name} to fetch weather...")
         _, lat, lon = get_coords_from_name(district_name)
         if lat and lon:
@@ -192,7 +175,6 @@ def api_plan_journey(request):
         
         journey_steps.append(step_data)
 
-    # --- FINAL RESPONSE ---
     response_data = {
         "message": "Full journey plan successful!",
         "route_geometry": route_data.get('geometry'),
