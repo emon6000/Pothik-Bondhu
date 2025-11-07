@@ -4,8 +4,6 @@ Welcome to **Pothik Bondhu**, your smart journey partner for exploring Banglades
 
 This app does more than just plan a route from A to B. It reveals the **"Route Wealth"** of your journey—the hidden gems, famous foods, and top sights of every district you pass through.
 
-![Screenshot of Pothik Bondhu Dark Mode](image_92dbe0.png)
-*(You can replace this with a real link to your screenshot later)*
 
 ---
 
