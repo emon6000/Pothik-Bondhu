@@ -10,20 +10,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # --- Core Settings ---
 SECRET_KEY = config('SECRET_KEY')
 
-# DEBUG is True on your PC, but will be False on Render
+# This is the "smart" switch:
+# 'RENDER' is an environment variable that Render sets.
+# If it's NOT on Render, DEBUG will be True.
 DEBUG = 'RENDER' not in os.environ
 
 # --- Deployment Settings ---
+ALLOWED_HOSTS = ['127.0.0.1'] # Always allow local
 
-# ALLOWED_HOSTS is a security list of who can visit your site.
-# We get your new Render URL from an environment variable.
-ALLOWED_HOSTS = []
-RENDER_EXTERNAL_HOSTNAME = config('RENDER_EXTERNAL_HOSTNAME', default=None)
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-else:
-    # For local development
-    ALLOWED_HOSTS.append('127.0.0.1')
 
 
 # --- Application definitions ---
@@ -34,8 +31,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',
+    'django.contrib.staticfiles', # <--- MUST COME FIRST
+    'whitenoise.runserver_nostatic', # <--- MUST COME SECOND
 ]
 
 MIDDLEWARE = [
@@ -70,18 +67,33 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# --- Database ---
-# This is the "smart" logic.
-# If it's on Render, it will use the 'DATABASE_URL' environment variable.
-# If it's on your PC, it will fall back to your 'db.sqlite3' file.
-DATABASES = {
-    'default': dj_database_url.config(
-        default=f'sqlite:///{os.path.join(BASE_DIR, "db.sqlite3")}'
-    )
-}
+# --- Database (The "Smart" Switch) ---
+if 'RENDER' in os.environ:
+    # We are on Render (production)
+    print("Using PostgreSQL database...")
+    DATABASES = {
+        'default': dj_database_url.config(
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+else:
+    # We are on your local PC (development)
+    print("Using local db.sqlite3 database...")
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # --- Password validation (no change) ---
-AUTH_PASSWORD_VALIDATORS = [ ... ] # (Leave this as it was)
+AUTH_PASSWORD_VALIDATORS = [
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+]
 
 # --- Internationalization (no change) ---
 LANGUAGE_CODE = 'en-us'
@@ -91,7 +103,6 @@ USE_L10N = True
 USE_TZ = True
 
 # --- Static files (CSS, JavaScript, Images) ---
-# This is now configured for Whitenoise
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -101,5 +112,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # --- POTHIK BONDHU CUSTOM KEYS ---
-# We now read this from environment variables
 WEATHER_API_KEY = config('WEATHER_API_KEY')
