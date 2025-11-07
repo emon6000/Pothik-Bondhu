@@ -1,0 +1,578 @@
+[
+    {
+        "model": "main.district",
+        "pk": 1,
+        "fields": {
+            "name": "Dhaka",
+            "top_sights": "Lalbagh Fort, Ahsan Manzil (Pink Palace), Star Mosque, Dhakeshwari Temple, National Parliament House",
+            "famous_food": "Hazir Biryani, Nanna'r Morog Polao, Beauty Lassi, Bakharkhani"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 2,
+        "fields": {
+            "name": "Faridpur",
+            "top_sights": "Palli Kobi Jasimuddin's Homestead, Mothurapur Deul, River Research Institute",
+            "famous_food": "Khejur Gur (Date Jaggery)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 3,
+        "fields": {
+            "name": "Gazipur",
+            "top_sights": "Bangabandhu Safari Park, Bhawal National Park, Nuhash Polli",
+            "famous_food": "Jackfruit (Kathal), Pineapple"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 4,
+        "fields": {
+            "name": "Gopalganj",
+            "top_sights": "Mausoleum of Bangabandhu (Tungipara), Ulpur Zamindar Bari",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 5,
+        "fields": {
+            "name": "Jamalpur",
+            "top_sights": "Lauchapra Picnic Spot, Madhutila Ecopark, Gandhi Ashram",
+            "famous_food": "Pitha (Rice Cakes)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 6,
+        "fields": {
+            "name": "Kishoreganj",
+            "top_sights": "Sholakia Eid Ground, Pagla Mosque, Isa Khan's Jangalbari Fort, Nikli Haor",
+            "famous_food": "Balish Misti (Pillow Sweet)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 7,
+        "fields": {
+            "name": "Madaripur",
+            "top_sights": "Dargah of Shah Madar, Senapati Dighi, Auliapur Neelkuthi",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 8,
+        "fields": {
+            "name": "Manikganj",
+            "top_sights": "Baliazamindars Palace, Teota Zamindar Bari, Aricha Ghat",
+            "famous_food": "Khejur Gur (Date Jaggery)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 9,
+        "fields": {
+            "name": "Munshiganj",
+            "top_sights": "Idrakpur Fort, Sir Jagadish Chandra Bose's Homestead, Padma Bridge (Mawa point)",
+            "famous_food": "Hilsa (Ilish) Fish, Misti (Sweets)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 10,
+        "fields": {
+            "name": "Mymensingh",
+            "top_sights": "Shashi Lodge, Zainul Abedin Sangrahashala (Art Museum), Muktagacha Zamindar Bari, Agricultural University",
+            "famous_food": "Monda (Sweet), Muktagachar Monda"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 11,
+        "fields": {
+            "name": "Narayanganj",
+            "top_sights": "Sonargaon (Ancient Capital), Goaldi Mosque, Panam City (Panam Nagar)",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 12,
+        "fields": {
+            "name": "Narsingdi",
+            "top_sights": "Wari-Bateshwar ruins, Dream Holiday Park, Belabo Bazar Mosque",
+            "famous_food": "Sagar Kola (Banana), Loitta Fish"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 13,
+        "fields": {
+            "name": "Netrokona",
+            "top_sights": "Birishiri (White Ceramic Hill), Durgapur, Susang Durgapur, Bijoypur",
+            "famous_food": "Balish Misti (Pillow Sweet)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 14,
+        "fields": {
+            "name": "Rajbari",
+            "top_sights": "Kustia Bridge (Lalon Shah Bridge), Mir Mosharraf Hossain Memorial Center",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 15,
+        "fields": {
+            "name": "Shariatpur",
+            "top_sights": "Padma Bridge (Janjira point), South Baluchara, Burirhat Mosque",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 16,
+        "fields": {
+            "name": "Sherpur",
+            "top_sights": "Ghazni Obokash Center (Garo Hills), Madhutila Ecopark, Nalitabari",
+            "famous_food": "Chhanar Payesh (Sweet)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 17,
+        "fields": {
+            "name": "Tangail",
+            "top_sights": "Madhupur National Park, Atia Mosque, Mohera Zamindar Bari, Jamuna Bridge (Bangabandhu Bridge)",
+            "famous_food": "Porabarir Chomchom (Sweet), Tangail Saree"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 18,
+        "fields": {
+            "name": "Chittagong",
+            "top_sights": "Patenga Sea Beach, Foy's Lake, Ethnological Museum, Shrine of Bayazid Bostami, Chandranath Hill (Sitakunda)",
+            "famous_food": "Mezban Beef, Kala Bhuna, Shutki (Dried Fish), Akhni Biryani"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 19,
+        "fields": {
+            "name": "Bandarban",
+            "top_sights": "Nilgiri, Nafakhum Waterfall, Boga Lake, Shoilo Propat, Golden Temple (Buddha Dhatu Jadi)",
+            "famous_food": "Bamboo Chicken, Tribal Cuisine, Hill Bananas"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 20,
+        "fields": {
+            "name": "Brahmanbaria",
+            "top_sights": "Kharampur Mazar Sharif, Arphail Sagardighi Mosque",
+            "famous_food": "Chhanamukhi (Sweet)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 21,
+        "fields": {
+            "name": "Chandpur",
+            "top_sights": "Chandpur Mohona (Meeting of 3 rivers), Hajiganj Boro Masjid, Rupsha Zamindar Bari",
+            "famous_food": "Hilsa (Ilish) Fish"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 22,
+        "fields": {
+            "name": "Cumilla",
+            "top_sights": "Shalban Bihar, Maynamati Museum, Dharma Sagar Dighi, Lalmai Pahar",
+            "famous_food": "Rosh malai (Matri Bhandar), Khadi/Khaddar Fabrics"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 23,
+        "fields": {
+            "name": "Cox's Bazar",
+            "top_sights": "Cox's Bazar Beach (World's Longest), Inani Beach (Coral Stones), Himchori Waterfall, Marine Drive, Moheshkhali Island, Saint Martin's Island",
+            "famous_food": "Fresh Seafood (Rupchanda, Loitta Fry), Burmese Pickles, Shutki Bhorta"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 24,
+        "fields": {
+            "name": "Feni",
+            "top_sights": "Muhuri Project (Irrigation Dam), Bijoy Singh Dighi",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 25,
+        "fields": {
+            "name": "Khagrachhari",
+            "top_sights": "Alutila Cave, Richhang Waterfall, Sajek Valley (nearby), Debotar Pukur (Holy Lake)",
+            "famous_food": "Tribal Bamboo Shoot dishes, Hill Chickens"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 26,
+        "fields": {
+            "name": "Lakshmipur",
+            "top_sights": "Titamir Mosque, Dalal Bazar Zamindar Bari",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 27,
+        "fields": {
+            "name": "Noakhali",
+            "top_sights": "Nijhum Dwip (Island), Musapur Closure, Gandhi Ashram",
+            "famous_food": "Noakhali Pitha, Coconut"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 28,
+        "fields": {
+            "name": "Rangamati",
+            "top_sights": "Kaptai Lake, Shuvolong Waterfall, Hanging Bridge (Jhulonto Shetu), Rajbana Vihara (Buddhist Monastery)",
+            "famous_food": "Bamboo Shoot Curry, Tribal dishes"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 29,
+        "fields": {
+            "name": "Rajshahi",
+            "top_sights": "Puthia Temple Complex, Varendra Research Museum, Bagha Mosque, Padma River Bank (T-Badh)",
+            "famous_food": "Mangoes (Aam), Kalai Ruti, Tiler Khaja"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 30,
+        "fields": {
+            "name": "Bogra",
+            "top_sights": "Mahasthangarh (Ancient City Ruin), Behula Lakshindarar Basor Ghor, Vasu Vihara",
+            "famous_food": "Kacha Golla (Sweet), Kotkoti, Mishti Doi (Sweet Yogurt)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 31,
+        "fields": {
+            "name": "Chapai Nawabganj",
+            "top_sights": "Choto Sona Mosque, Darasbari Mosque, Tahkhana Complex, Adina Mosque (nearby)",
+            "famous_food": "Mangoes (Aam), Shibb-er Chamchom"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 32,
+        "fields": {
+            "name": "Joypurhat",
+            "top_sights": "Paharpur Buddhist Monastery (Somapura Mahavihara - nearby in Naogaon), Nandail Dighi",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 33,
+        "fields": {
+            "name": "Naogaon",
+            "top_sights": "Paharpur Buddhist Monastery (Somapura Mahavihara), Kusumba Mosque, Patisar Zamindar Bari",
+            "famous_food": "Para Sandesh (Sweet)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 34,
+        "fields": {
+            "name": "Natore",
+            "top_sights": "Natore Rajbari (Royal Palace), Uttara Gonobhaban, Chalan Beel (Largest Wetland)",
+            "famous_food": "Kachagolla (Sweet)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 35,
+        "fields": {
+            "name": "Pabna",
+            "top_sights": "Hardinge Bridge, Lalon Shah Bridge, Paksey Railway Station, Chalan Beel",
+            "famous_food": "Ghee, Mishti Doi (Sweet Yogurt)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 36,
+        "fields": {
+            "name": "Sirajganj",
+            "top_sights": "Jamuna Bridge (Bangabandhu Bridge), Rabindra Kuthibari (Shahzadpur), Navaratna Temple",
+            "famous_food": "Mishti Doi (Sweet Yogurt), Pantua (Sweet)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 37,
+        "fields": {
+            "name": "Khulna",
+            "top_sights": "Sundarbans (Karamjol), Rupsha Bridge, Khulna University, Rabindra Complex",
+            "famous_food": "Chui Jhal (Spicy Beef/Mutton), Shrimp (Chingri) Malai Curry, Sandesh"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 38,
+        "fields": {
+            "name": "Bagerhat",
+            "top_sights": "Sixty Dome Mosque (Shaṭ Gombuj Moshjid), Shrine of Khan Jahan Ali, Nine Dome Mosque, Sundarbans",
+            "famous_food": "Shrimp (Chingri), Coconut"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 39,
+        "fields": {
+            "name": "Chuadanga",
+            "top_sights": "Karpasdanga Neelkuthi, Gholdari Mosque",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 40,
+        "fields": {
+            "name": "Jessore",
+            "top_sights": "Michael Madhusudan Dutt's Homestead (Sagardari), Jessore IT Park, Benapole Land Port",
+            "famous_food": "Khejur Gur (Date Jaggery), Jamtolar Rosgolla"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 41,
+        "fields": {
+            "name": "Jhenaidah",
+            "top_sights": "Gorar Mosque, Naldanga Temple Complex",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 42,
+        "fields": {
+            "name": "Kushtia",
+            "top_sights": "Lalon Shah's Mazar, Rabindranath Tagore's Kuthibari (Shilaidaha), Hardinge Bridge",
+            "famous_food": "Tiler Khaja, Kulfi"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 43,
+        "fields": {
+            "name": "Magura",
+            "top_sights": "Raja Sitaram Ray's Palace, Magura Asram",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 44,
+        "fields": {
+            "name": "Meherpur",
+            "top_sights": "Mujibnagar Liberation War Memorial Complex, Amjhupi Neelkuthi",
+            "famous_food": "Sabitrir Roskodom (Sweet)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 45,
+        "fields": {
+            "name": "Narail",
+            "top_sights": "Artist S.M. Sultan's Homestead & Art Gallery, Niribili Picnic Spot",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 46,
+        "fields": {
+            "name": "Satkhira",
+            "top_sights": "Sundarbans (West), Kaligonj, Shyamnagar, Mandarbari-a Beach",
+            "famous_food": "Honey, Shrimp (Chingri)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 47,
+        "fields": {
+            "name": "Barisal",
+            "top_sights": "Floating Guava Market (Atghar Kuriana), Guthia Mosque, Durga Sagar Dighi, Bibir Pukur",
+            "famous_food": "Hilsa (Ilish) Fish, Coconut Prawn Curry, Shorshe Ilish"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 48,
+        "fields": {
+            "name": "Barguna",
+            "top_sights": "Kuakata Beach (nearby), Sonakata Sea Beach, Taltali",
+            "famous_food": "Hilsa (Ilish) Fish"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 49,
+        "fields": {
+            "name": "Bhola",
+            "top_sights": "Char Kukri Mukri, Manpura Island, Bhola Dighi",
+            "famous_food": "Hilsa (Ilish) Fish, Buffalo Curd (Doi)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 50,
+        "fields": {
+            "name": "Jhalokati",
+            "top_sights": "Keora Forest (in Kathalia), Sujabad Kella",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 51,
+        "fields": {
+            "name": "Patuakhali",
+            "top_sights": "Kuakata Sea Beach, Fatrar Char, Payra Port",
+            "famous_food": "Hilsa (Ilish) Fish"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 52,
+        "fields": {
+            "name": "Pirojpur",
+            "top_sights": "Rayerkathi Zamindar Bari, Baleswar River",
+            "famous_food": "Coconut, Guava"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 53,
+        "fields": {
+            "name": "Sylhet",
+            "top_sights": "Shrine of Hazrat Shah Jalal, Jaflong, Ratargul Swamp Forest, Bisnakandi, Lala Khal",
+            "famous_food": "Shatkora Beef, Seven-Layer Tea (Nilkantha Tea Cabin), Akhni Polao"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 54,
+        "fields": {
+            "name": "Habiganj",
+            "top_sights": "Satchari National Park, Rema-Kalenga Wildlife Sanctuary, The Palace Luxury Resort",
+            "famous_food": "Tea, Rubber"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 55,
+        "fields": {
+            "name": "Moulvibazar",
+            "top_sights": "Sreemangal (Tea Capital), Lawachara National Park, Madhabkunda Waterfall, Hakaluki Haor",
+            "famous_food": "Seven-Layer Tea, Pineapple, Tea"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 56,
+        "fields": {
+            "name": "Sunamganj",
+            "top_sights": "Tanguar Haor, Niladri Lake (Tekerghat), Jadukata River, Hason Raja Museum",
+            "famous_food": "Freshwater Fish"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 57,
+        "fields": {
+            "name": "Rangpur",
+            "top_sights": "Tajhat Palace (Zamindar Bari), Begum Rokeya University, Carmichael College",
+            "famous_food": "Shataranji (Carpets), Haribhanga Mango"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 58,
+        "fields": {
+            "name": "Dinajpur",
+            "top_sights": "Kantajew Temple (Kantanagar Temple), Ramsagar National Park, Dinajpur Rajbari",
+            "famous_food": "Litchi (Lychee), Papor (Papad), Chira (Flattened Rice)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 59,
+        "fields": {
+            "name": "Gaibandha",
+            "top_sights": "Balaishil Ghat, Jamuna River Bank, Trimohini Ghat",
+            "famous_food": "Roshmonjuri (Sweet)"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 60,
+        "fields": {
+            "name": "Kurigram",
+            "top_sights": "Chilmari River Port, Dharla Bridge, Chandamari Mosque",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 61,
+        "fields": {
+            "name": "Lalmonirhat",
+            "top_sights": "Tista Barrage, Patgram Dahagram-Angarpota Enclaves, Tin Bigha Corridor",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 62,
+        "fields": {
+            "name": "Nilphamari",
+            "top_sights": "Teesta Barrage, Saidpur Railway Workshop, Chini Mosque",
+            "famous_food": ""
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 63,
+        "fields": {
+            "name": "Panchagarh",
+            "top_sights": "Tetulia (Bangladesh-India border), Kanchenjunga (viewpoint), Banglabandha Zero Point",
+            "famous_food": "Tea"
+        }
+    },
+    {
+        "model": "main.district",
+        "pk": 64,
+        "fields": {
+            "name": "Thakurgaon",
+            "top_sights": "Ramsagar, Balia Mosque, Jagdal Rajbari",
+            "famous_food": ""
+        }
+    }
+]

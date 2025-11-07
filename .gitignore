@@ -1,0 +1,23 @@
+# This is a .gitignore file
+
+# --- Secrets ---
+# IGNORE THE .env FILE! This is the most important line.
+.env
+
+# --- Environment ---
+# Ignore the entire virtual environment folder
+.venv/
+venv/
+
+# --- Django Files ---
+# Ignore the local database
+db.sqlite3
+*.sqlite3
+
+# --- Python Cache ---
+# Ignore the cache folders
+__pycache__/
+*.pyc
+
+# --- VS Code Cache ---
+.vscode/

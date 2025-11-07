@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+{% load static %} <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pothik Bondhu - Your Travel Friend</title>
+
+    <link rel="shortcut icon" href="{% static 'images/image.png' %}" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    </head>
+<body>
+
+    <header class="header">
+        <a href="/" class="header-logo">
+            <span class="icon">🗺️</span>
+            <span class="title">Pothik Bondhu</span>
+        </a>
+        <nav class="header-nav">
+            <ul>
+                <li><a href="#" id="about-link">About</a></li>
+                <li><a href="#" id="contact-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content-container">
+        <section class="hero-section">
+            <h1>Welcome to Pothik Bondhu (পথিক বন্ধু)</h1><br>
+            <p>Your journey partner for exploring Bangladesh.</p>
+        </section>
+        <section class="input-panel">
+    
+    <div class="input-group">
+    <label for="start">Start</label>
+    <input type="text" list="districts-list" id="start" placeholder="Start typing a district..." autocomplete="off">
+    <div id="start-results" class="autocomplete-results hidden"></div>
+</div>
+
+<div class="input-group">
+    <label for="end">End</label>
+    <input type="text" list="districts-list" id="end" placeholder="Start typing a district..." autocomplete="off">
+    <div id="end-results" class="autocomplete-results hidden"></div>
+</div>
+    
+    <button id="submit-btn" class="submit-btn">Plan My Journey</button>
+    </section>
+
+    <datalist id="districts-list">
+    <option value="Bagerhat">
+    <option value="Bandarban">
+    <option value="Barguna">
+    <option value="Barishal"> <option value="Bhola">
+    <option value="Bogra">
+    <option value="Brahmanbaria">
+    <option value="Chandpur">
+    <option value="Chapai Nawabganj"> <option value="Chittagong">
+    <option value="Chuadanga">
+    <option value="Cox's Bazar">
+    <option value="Cumilla"> <option value="Dhaka">
+    <option value="Dinajpur">
+    <option value="Faridpur">
+    <option value="Feni">
+    <option value="Gaibandha">
+    <option value="Gazipur">
+    <option value="Gopalganj">
+    <option value="Habiganj">
+    <option value="Jamalpur">
+    <option value="Jessore">
+    <option value="Jhalokati"> <option value="Jhenaidah">
+    <option value="Joypurhat">
+    <option value="Khagrachhari">
+    <option value="Khulna">
+    <option value="Kishoreganj">
+    <option value="Kurigram">
+    <option value="Kushtia">
+    <option value="Lakshmipur">
+    <option value="Lalmonirhat">
+    <option value="Madaripur">
+    <option value="Magura">
+    <option value="Manikganj">
+    <option value="Meherpur">
+    <option value="Moulvibazar">
+    <option value="Munshiganj">
+    <option value="Mymensingh">
+    <option value="Naogaon">
+    <option value="Narail">
+    <option value="Narayanganj">
+    <option value_g="Narsingdi">
+    <option value="Natore">
+    <option value="Netrokona">
+    <option value="Nilphamari">
+    <option value="Noakhali">
+    <option value="Pabna">
+    <option value="Panchagarh">
+    <option value="Patuakhali">
+    <option value="Pirojpur">
+    <option value="Rajbari">
+    <option value="Rajshahi">
+    <option value="Rangamati">
+    <option value="Rangpur">
+    <option value="Satkhira">
+    <option value="Shariatpur">
+    <option value="Sherpur">
+    <option value="Sirajganj">
+    <option value="Sunamganj">
+    <option value="Sylhet">
+    <option value="Tangail">
+    <option value="Thakurgaon">
+</datalist>
+
+        <section class="map-section">
+            <div id="map"></div>
+        </section>
+
+        <section class="journey-steps">
+            <div id="results-panel">
+                <p>Please select a start and end location to plan your journey.</p>
+            </div>
+</section>
+
+    </main>
+    <div id="about-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="modal-close-btn">&times;</span>
+            <h2>About Pothik Bondhu</h2>
+            <p><strong>Pothik Bondhu (পথিক বন্ধু)</strong> is your smart travel companion for exploring Bangladesh.</p>
+            <p>Instead of just showing a route from A to B, Pothik Bondhu reveals the **'Route Wealth'** of your journey—the hidden gems, famous foods, and top sights of every district you pass through.</p>
+            <p>Plan your next trip and discover the true culture of Bangladesh along the way.</p>
+        </div>
+    </div>
+
+    <div id="contact-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="modal-close-btn">&times;</span>
+            <h2>Contact Me</h2>
+            <p>For any questions, feedback, or just to say hello, you can reach me here:</p>
+            <ul class="contact-list">
+                <li><strong>Email:</strong> <a href="mailto:abdullahemon.me@gmail.com">abdullahemon6377@gmail.com</a></li>
+                <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/abdem0n/"target="_blank" rel="noopener noreferrer">Visit LinkedIn Profile</a></li>
+                <li><strong>GitHub:</strong> <a href="https://github.com/emon6000"target="_blank" rel="noopener noreferrer">Visit GitHub Profile</a></li>
+            </ul>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>Version 1.0 Made by Abdullah Al Mahmud Emon</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="{% static 'js/app.js' %}"></script>
+
+    </body>
+</html>
