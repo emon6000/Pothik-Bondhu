@@ -4,6 +4,7 @@ from django.conf import settings
 from .models import District
 import json
 import requests
+from django.views.decorators.csrf import csrf_exempt
 
 def home(request):
     """
@@ -17,7 +18,7 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
-
+@csrf_exempt
 def api_plan_journey(request):
     
     data = json.loads(request.body)
