@@ -102,7 +102,7 @@ def api_plan_journey(request):
     def get_weather(lat, lon):
         print(f"Getting weather for {lat}, {lon}")
         api_key = settings.WEATHER_API_KEY 
-        url = f"https://api.openweathermap.org/data/2.5/weather"
+        url = f"https{':'}//api.openweathermap.org/data/2.5/weather"
         params = { 'lat': lat, 'lon': lon, 'appid': api_key, 'units': 'metric' }
         try:
             response = requests.get(url, params=params)
@@ -128,20 +128,28 @@ def api_plan_journey(request):
     if not route_data:
         return JsonResponse({'error': 'A route could not be found between these locations.'}, status=400)
 
+    
     all_districts = []
     
     start_district = get_district_from_coords(start_lon, start_lat)
-    if start_district: all_districts.append(start_district)
+    if start_district: 
+        all_districts.append(start_district)
     
     coordinates = route_data['geometry']['coordinates']
-    if len(coordinates) > 4:
-        sample_indices = [
-            int(len(coordinates) * 0.25),
-            int(len(coordinates) * 0.50),
-            int(len(coordinates) * 0.75)
-        ]
-        for index in sample_indices:
+    total_distance_meters = route_data.get('distance', 0)
+    
+    sample_distance_meters = 30000 
+    sample_count = int(total_distance_meters / sample_distance_meters) 
+    
+    print(f"Route is {total_distance_meters / 1000:.1f}km. Sampling {sample_count} intermediate points (one every 20km).")
+
+    if sample_count > 0 and len(coordinates) > 2:
+        for i in range(1, sample_count + 1):
+            percent_along = (i / (sample_count + 1))
+            index = int(len(coordinates) * percent_along)
+            
             lon, lat = coordinates[index]
+            
             district_name = get_district_from_coords(lon, lat)
             if district_name and district_name not in all_districts:
                 all_districts.append(district_name)
@@ -151,6 +159,7 @@ def api_plan_journey(request):
         all_districts.append(end_district)
         
     print(f"Final normalized district list: {all_districts}")
+    
     
     journey_steps = []
     
