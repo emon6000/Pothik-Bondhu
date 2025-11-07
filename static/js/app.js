@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", function() {
             let finalHtml = `
                 <div class="route-summary">
                     <h3>Your Route Summary</h3>
-                    <p><strong>Total Distance:</strong> ${distanceKm} km</p>
-                    <p><strong>Estimated Time:</strong> ${durationHours} hours</p>
+                    <p><strong>Total Distance(By road):</strong> ${distanceKm} km</p>
+                    <p><strong>Estimated Time(Covered the speed limit rules):</strong> ${durationHours} hours</p>
                 </div>
             `;
             
